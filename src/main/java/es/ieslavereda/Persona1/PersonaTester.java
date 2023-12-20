@@ -20,21 +20,21 @@ public class PersonaTester {
             }
             System.out.println();
 
-            final int debajoDeSuPeso = -1;
-            final int pesoideal = 0;
-            final int sobrepeso = 1;
-            final int obeso = 2;
+            final int DEBAJODESUPESO = -1;
+            final int PESOIDEAL = 0;
+            final int SOBREPESO = 1;
+            final int OBESO = 2;
             switch (personas[i].calcularIMC()){
-                case debajoDeSuPeso:
+                case DEBAJODESUPESO:
                     System.out.println(personas[i].getNombre() + " " + personas[i].getApellidos() + " está por debajo de su peso.");
                     break;
-                case pesoideal:
+                case PESOIDEAL:
                     System.out.println(personas[i].getNombre() + " " + personas[i].getApellidos() + " está en un peso ideal.");
                     break;
-                case sobrepeso:
+                case SOBREPESO:
                     System.out.println(personas[i].getNombre() + " " + personas[i].getApellidos() + " tiene un poco de sobrepeso.");
                     break;
-                case obeso:
+                case OBESO:
                     System.out.println(personas[i].getNombre() + " " + personas[i].getApellidos() + " es morbosamente obeso.");
                     break;
             }

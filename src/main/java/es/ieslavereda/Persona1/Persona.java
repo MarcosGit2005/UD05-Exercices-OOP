@@ -80,21 +80,21 @@ public class Persona {
         return numDniString + letra[numDni%23];
     }
     public int calcularIMC(){
-        final int debajoDeSuPeso = -1;
-        final int pesoideal = 0;
-        final int sobrepeso = 1;
-        final int obeso = 2;
+        final int DEBAJODESUPESO = -1;
+        final int PESOIDEAL = 0;
+        final int SOBREPESO = 1;
+        final int OBESO = 2;
 
         double IMC = peso/Math.pow(altura,2);
 
         if (IMC<18.5){
-            return debajoDeSuPeso;
+            return DEBAJODESUPESO;
         } else if (IMC>=18.5 && IMC<25){
-            return pesoideal;
+            return PESOIDEAL;
         } else if (IMC>=25 && IMC<30){
-            return sobrepeso;
+            return SOBREPESO;
         } else { // else if (IMC>=30)
-            return obeso;
+            return OBESO;
         }
     }
     @Override
