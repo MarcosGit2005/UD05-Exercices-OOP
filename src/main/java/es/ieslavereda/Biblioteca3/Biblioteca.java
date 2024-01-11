@@ -32,21 +32,60 @@ public class Biblioteca {
     public int getNumLibrosActuales(){
         return numLibrosActuales;
     }
-    /*public int buscarPosiciónDelLibro(String nombreLibro){
-        int i = 0;
-        while (i<numLibrosActuales){
-            if (libros[i].getTítulo().equals(nombreLibro)){
-                return i;
-            }
-            i++;
-        }
-        return -1;
-    }*/
     public boolean añadirLibro(Libro libro, int numEjemplares){
         if (numLibrosActuales<libros.length){
             libros[numLibrosActuales++] = new Libro(libro.getTítulo(),libro.getAutor(),numEjemplares);
             return true;
         }
         return false;
+    }
+    public boolean eliminarLibro(String palabraClave){
+        int posiciónLibro = buscarPosicionLibro(palabraClave);
+        if (numLibrosActuales>0 && posiciónLibro!=-1){
+            libros[posiciónLibro] = libros[numLibrosActuales-1]; // Directamente le añado el último libro
+            libros[numLibrosActuales-1] = null; // Y al último lo borro
+            numLibrosActuales--;
+            return true;
+        }
+        return false;
+    }
+    public int buscarPosicionLibro(String palabraClave){
+        if (palabraClave.isEmpty())
+            return -1;
+        for(int posición=0;posición<numLibrosActuales;posición++){
+
+            for (int j=0;j<libros[posición].getTítulo().length() - (palabraClave.length()-1);j++){
+
+                if (palabraClave.toLowerCase().equals(libros[posición].getTítulo().substring(j,j+palabraClave.length()).toLowerCase())){
+                    return posición;
+                }
+
+            }
+
+        }
+        return -1;
+    }
+    public boolean prestamo(String palabraClave){
+        int posicionLibro = buscarPosicionLibro(palabraClave);
+        if (posicionLibro!=-1 && libros[posicionLibro].préstamo()){
+            return true;
+        }
+        return false;
+    }
+    public boolean devolución(String palabraClave){
+        int posicionLibro = buscarPosicionLibro(palabraClave);
+        if (posicionLibro!=-1 && libros[posicionLibro].devolución()){
+            return true;
+        }
+        return false;
+    }
+    @Override
+    public String toString(){
+        String out = "[Nombre: " + nombre + ", barrio: " + barrio + ", numLibrosActuales: " + numLibrosActuales + ", listado de libros: ";
+        for (int i=0;i<numLibrosActuales;i++){
+            out += libros[i].getTítulo() + ", ";
+        }
+        out = out.substring(0,out.length()-2) + "]";
+        return out;
     }
 }
